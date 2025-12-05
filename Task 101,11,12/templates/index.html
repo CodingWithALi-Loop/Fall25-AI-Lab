@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Laptop Price Predictor</h1>
+        <form method="POST">
+            <div class="form-grid">
+                <label>Brand</label>
+                <select name="brand">
+                    {% for b in brands %}
+                    <option value="{{b}}">{{b}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Processor Brand</label>
+                <select name="processor_brand">
+                    {% for pb in processor_brands %}
+                    <option value="{{pb}}">{{pb}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Processor Name</label>
+                <select name="processor_name">
+                    {% for pn in processor_names %}
+                    <option value="{{pn}}">{{pn}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>RAM Type</label>
+                <select name="ram_type">
+                    {% for rt in ram_types %}
+                    <option value="{{rt}}">{{rt}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>OS</label>
+                <select name="os">
+                    {% for o in oss %}
+                    <option value="{{o}}">{{o}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>OS Bit</label>
+                <select name="os_bit">
+                    {% for ob in os_bits %}
+                    <option value="{{ob}}">{{ob}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Weight</label>
+                <select name="weight">
+                    {% for w in weights %}
+                    <option value="{{w}}">{{w}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Touchscreen</label>
+                <select name="Touchscreen">
+                    {% for t in touchscreen %}
+                    <option value="{{t}}">{{t}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>MS Office</label>
+                <select name="msoffice">
+                    {% for mo in msoffice %}
+                    <option value="{{mo}}">{{mo}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>RAM (GB)</label>
+                <input type="number" name="ram_gb" value="8" min="2" max="64">
+
+                <label>SSD (GB)</label>
+                <input type="number" name="ssd" value="512" min="0" max="2000">
+
+                <label>HDD (GB)</label>
+                <input type="number" name="hdd" value="0" min="0" max="2000">
+
+                <label>Graphic Card (GB)</label>
+                <input type="number" name="graphic_card_gb" value="4" min="0" max="32">
+
+                <label>Processor Generation</label>
+                <input type="number" name="processor_gnrtn" value="10" min="1" max="15">
+
+                <label>Warranty (Years)</label>
+                <input type="number" name="warranty" value="1" min="0" max="5">
+
+                <label>Rating</label>
+                <input type="number" name="rating" value="4" step="0.1" min="0" max="5">
+            </div>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if price %}
+        <div class="result">
+            <h2>Predicted Price: ₹{{price | round(0)}}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
